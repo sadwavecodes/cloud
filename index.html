@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+   <html>
+      <head>
+         <title>GD Level Requests Login</title>
+         <style>
+            .yes {
+               text-align:center;
+               margin-top:50px;
+
+            }
+            #password {
+               margin-left:3px;
+               font-family:Verdana, Geneva, Tahoma, sans-serif;
+            }
+
+            #username {
+               margin-bottom:25px;
+               font-family:Verdana, Geneva, Tahoma, sans-serif;
+            }
+
+            button {
+
+               margin-top:10px;
+               font-family:Verdana, Geneva, Tahoma, sans-serif;
+            }
+
+            label {
+
+               font-family:Verdana, Geneva, Tahoma, sans-serif;
+            }
+            
+            legend {
+               font-size: 25px;
+               margin-bottom:10px;
+               font-family:Verdana, Geneva, Tahoma, sans-serif;
+            }
+
+            body {
+               background-color:lightgray;
+            }
+
+ .img {
+
+   text-align:center;
+ }
+
+ p{
+   
+   font-size:25px;
+   font-family:Verdana, Geneva, Tahoma, sans-serif;
+   margin-top:50px;
+   text-align:center;
+ }
+
+.link {
+
+   text-align:center;
+}
+               
+
+
+
+
+
+         </style>
+      </head>
+   </html>
+      <body>
+         <div class = img>
+         <img src="sc.png" Alt="Sadwave Cloud">
+         </div>
+<form class="yes">
+  <legend>Account Login</legend>
+
+      <label for="username">Username:</label>
+      <input id="username" type="text">
+      <br>
+      <label for="password">Password:</label>
+      <input id="password" type="password">
+<br>
+      <button id="login" type="button">Log In!</button>
+</form>
+
+<p>To create an account please contact sadwave_ on discord. Please only create an account if you plan on using it for leve requests please don't make an account just to make one! For people with an account signing in with a correct username and password will redirect you to your private site where you will be able to monitor and delete your level requests. You will also be able to view your level request link so you can share it with the people that will be requesting. For your safety if you have an account please do not share any information on the account and if any leaks occur please contact sadwave_ on discord ASAP and I will set you up with a new account. Thank You! </p>
+</p>
+
+<div class="link">
+<a href="discord.gg/gdrequests">
+   Discord
+</a>
+</div>
+
+</body>
+</html>
+
+
+<script> 
+var users = [
+    { username: 'sadwave', password: '123stinkystreet' },
+    { username: 'user2', password: 'pass2' },
+    { username: 'user3', password: 'pass3' }
+];
+
+var button = document.getElementById('login');
+
+button.onclick = function() {
+   var username = document.getElementById('username').value;
+   var password = document.getElementById('password').value; 
+
+   for (var i = 0; i < users.length; i++) {
+      if(username == users[i].username && password == users[i].password) {
+         window.location.href = ""+username+".html";
+         break;
+      }else{
+         alert('Contact sadwave_ on discord to create an account!');
+      }
+   }
+}
+
+</script>

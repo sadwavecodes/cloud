@@ -3,34 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>sadwave cloud</title>
-  <style>
-    .signout {
-      text-align: right;
-    }
-    
-    .p {
-      text-align: left;
-      margin-top: -35px;
-    }
-    
-    iframe {
-      height: 100%;
-      width: 100%;
-    }
-  </style>
+  <title>Google Script Integration</title>
 </head>
 <body>
-  <div class="signout">
-    <a href="index.html">Sign Out</a>
-    <div class="p">
-      <p>Welcome sadwave</p>
-    </div>
-  </div>
-
   <button id="btn">Send Level</button>
   
-  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRY5s1lkIiH55OtEtZU71llxxi5XNiKsmYhkjG8lIOlVfWg4gwKjV7XpI3mcmoTUryPO3ezrR1L-ieJ/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+  <iframe id="googleSheet" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRY5s1lkIiH55OtEtZU71llxxi5XNiKsmYhkjG8lIOlVfWg4gwKjV7XpI3mcmoTUryPO3ezrR1L-ieJ/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
   
   <script>
     const btn = document.getElementById('btn');

@@ -43,6 +43,6 @@
    const scriptURL= "https://script.google.com/macros/s/AKfycbwNjILlSb12LyqWsUs8r6fxWq6W37LEKMLki36ORpQyvdeLOso7hvPlctPX9Bu_GEo/exec"
     
     form.addEventListener('submit', e => {
-      fetch(scriptURL, { method: 'POST'})
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
     })
 </script>

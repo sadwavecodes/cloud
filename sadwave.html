@@ -33,7 +33,7 @@
     </div>
     <div class = but>
         <form>
-       <button type="submit">Click</button>
+       <button type="submit">clear requests</button>
             </form>
     </div>
     
@@ -44,6 +44,6 @@
     
     form.addEventListener('submit', e => {
       e.preventDefault()
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      fetch(scriptURL, { method: 'POST'})
     })
 </script>

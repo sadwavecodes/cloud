@@ -1,52 +1,48 @@
-<style>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sadwave cloud</title>
+  <style>
     .signout {
-    text-align:right;
+      text-align: right;
     }
     
-    .p{
-    
-        text-align:left;
-        margin-top: -35px;
-    
+    .p {
+      text-align: left;
+      margin-top: -35px;
     }
     
-    iframe{
-    
-    height: 100%;
-    width:100%;
-    
+    iframe {
+      height: 100%;
+      width: 100%;
     }
-    
-    
-    </style>
-
-    
-        <div class="signout">
-    <a href="index.html">
-        signout </a>
-    
-    </a>
+  </style>
+</head>
+<body>
+  <div class="signout">
+    <a href="index.html">Sign Out</a>
     <div class="p">
-    <p>welcome sadwave</p>
+      <p>Welcome sadwave</p>
     </div>
-    </div>
-  <form name="submit-to-google-sheet" id="googlesheetid">
-    <input name="id" type="id" id="id" placeholder="">
-    <div class="button">
-      <input id="btn" type=button" alt="Send Level">
-    </div>
-  </form>
-    
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRY5s1lkIiH55OtEtZU71llxxi5XNiKsmYhkjG8lIOlVfWg4gwKjV7XpI3mcmoTUryPO3ezrR1L-ieJ/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
-    
-<script>
-   const scriptURL= "https://script.google.com/macros/s/AKfycbwNjILlSb12LyqWsUs8r6fxWq6W37LEKMLki36ORpQyvdeLOso7hvPlctPX9Bu_GEo/exec"
-    
-    form.addEventListener('submit', e => {
-      e.preventDefault()
-      fetch(scriptURL, { method: 'POST'})
-        .then(response => console.log('Success! cleared'))
-        .catch(error => console.log('Error not cleared: ' + error.message))
-    })
-</script>
+  </div>
+
+  <button id="btn">Send Level</button>
+  
+  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRY5s1lkIiH55OtEtZU71llxxi5XNiKsmYhkjG8lIOlVfWg4gwKjV7XpI3mcmoTUryPO3ezrR1L-ieJ/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+  
+  <script>
+    const btn = document.getElementById('btn');
+
+    btn.addEventListener('click', () => {
+      const scriptURL = "https://script.google.com/macros/s/AKfycbwNjILlSb12LyqWsUs8r6fxWq6W37LEKMLki36ORpQyvdeLOso7hvPlctPX9Bu_GEo/exec";
+      fetch(scriptURL, { 
+        method: 'POST',
+      })
+      .then(response => console.log('Success! Request sent to Google Script'))
+      .catch(error => console.error('Error:', error));
+    });
+  </script>
+</body>
+</html>

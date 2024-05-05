@@ -32,7 +32,9 @@
     </div>
     </div>
     <div class = but>
-       <button onclick="deleteReqs()">Click</button>
+        <form>
+       <button type="submit">Click</button>
+            </form>
     </div>
     
     <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRY5s1lkIiH55OtEtZU71llxxi5XNiKsmYhkjG8lIOlVfWg4gwKjV7XpI3mcmoTUryPO3ezrR1L-ieJ/pubhtml?gid=0&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
@@ -40,7 +42,8 @@
 <script>
    const scriptURL= "https://script.google.com/macros/s/AKfycbwNjILlSb12LyqWsUs8r6fxWq6W37LEKMLki36ORpQyvdeLOso7hvPlctPX9Bu_GEo/exec"
     
-       function deleteReqs () {
-       fetch(scriptURL, { method: 'POST'})
-    }
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    })
 </script>

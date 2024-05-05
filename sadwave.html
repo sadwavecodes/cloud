@@ -33,7 +33,7 @@
     </div>
     <div class = but>
         <form>
-       <button type="submit">clear requests</button>
+       <input type="submit">clear requests</input>
             </form>
     </div>
     
@@ -43,7 +43,6 @@
    const scriptURL= "https://script.google.com/macros/s/AKfycbwNjILlSb12LyqWsUs8r6fxWq6W37LEKMLki36ORpQyvdeLOso7hvPlctPX9Bu_GEo/exec"
     
     form.addEventListener('submit', e => {
-      e.preventDefault()
       fetch(scriptURL, { method: 'POST'})
     })
 </script>

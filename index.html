@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sadwave Cloud Login</title>
+    <style>
+      .yes {
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      #password {
+        margin-left: 3px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      #username {
+        margin-bottom: 25px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      button {
+        margin-top: 10px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      label {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+
+      legend {
+        font-size: 25px;
+        margin-bottom: 10px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        text-align: center;
+      }
+
+      body {
+        background-color: lightgray;
+      }
+
+      .img {
+        text-align: center;
+      }
+
+      p {
+        font-size: 25px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        margin-top: 50px;
+        text-align: center;
+      }
+
+      .link {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="img">
+      <img src="sc.png" alt="Sadwave Cloud">
+    </div>
+    <form class="yes" id="loginForm" method="POST" action="https://sadwave1.pythonanywhere.com/login">
+      <legend>Account Login</legend>
+      <input id="username" type="text" name="username" placeholder="Username" required>
+      <input id="password" type="password" name="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+  </form>
+  
+
+    <p>
+      To create an account please contact sadwave_ on discord. Please only create an account if you plan on using it for level requests. For people with an account, signing in with a correct username and password will redirect you to your personal request site. This request API is currently in beta and the handling of accounts other than my own account is being tested. Please be patient!
+    </p>
+
+    <div class="link">
+      <a href="https://discord.gg/gdrequests">Discord</a>
+      <br />
+      <a href="images.html">Image Database</a>
+    </div>
+
+    <script>
+document.getElementById("login-form").addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevent default form submission
+
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  // Prepare the data to be sent in the API request
+  const data = {
+    username: username,
+    password: password,
+  };
+
+
+
+  // Send login request to the PythonAnywhere endpoint
+  fetch("https://sadwave1.pythonanywhere.com/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        return response.json().then((error) => {
+          throw new Error(error.error)
+
+        });
+      }
+      // If login is successful, the server will handle the redirection
+      window.location.href = response.url; // This will redirect based on server response
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      alert("An error occurred while logging in: " + error.message);
+    });
+});
+
+    </script>
+  </body>
+</html>

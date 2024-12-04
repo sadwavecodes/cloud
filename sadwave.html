@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sadwave</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Popup style */
+        #passwordPopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+        }
+        #passwordPopup input {
+            padding: 10px;
+            margin-top: 10px;
+        }
+        #passwordPopup button {
+            margin-top: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>sadwave's level requests</h1>
+    <button onclick="showPasswordPopup()">Delete All Requests</button>
+    <table id="requestsTable">
+        <thead>
+            <tr>
+                <th>Request Number</th>
+                <th>Level ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be injected here -->
+        </tbody>
+    </table>
+
+    <!-- Password Popup -->
+    <div id="passwordPopup">
+        <h3>Enter Admin Password</h3>
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="deleteAllRequests()">Delete All</button>
+        <button onclick="closePopup()">Cancel</button>
+    </div>
+
+    <script>
+        // Function to fetch and display requests
+        function fetchRequests() {
+            fetch('https://sadwave1.pythonanywhere.com/view_requests?secret=thisisnotsecret', {
+                method: 'GET'
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json(); // Parse JSON data from the response
+                } else {
+                    throw new Error('Failed to fetch data');
+                }
+            })
+            .then(data => {
+                console.log('Data fetched successfully:', data); // Log the fetched data for debugging
+                displayRequests(data.requests); // Pass the 'requests' data to display function
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        // Function to display requests in the table
+        function displayRequests(requests) {
+            const tableBody = document.querySelector("#requestsTable tbody");
+            tableBody.innerHTML = ''; // Clear existing table rows
+
+            // Loop through each request and create a new table row
+            requests.forEach(request => {
+                const row = document.createElement("tr");
+
+                // Create and append cells for Request ID and Level ID
+                const idCell = document.createElement("td");
+                idCell.textContent = request.id;
+                row.appendChild(idCell);
+
+                const levelIdCell = document.createElement("td");
+                levelIdCell.textContent = request.level_id;
+                row.appendChild(levelIdCell);
+
+                // Append the row to the table body
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Function to show the password input popup
+        function showPasswordPopup() {
+            document.getElementById("passwordPopup").style.display = "block";
+        }
+
+        // Function to close the password input popup
+        function closePopup() {
+            document.getElementById("passwordPopup").style.display = "none";
+        }
+
+        // Function to delete all requests
+        function deleteAllRequests() {
+            const password = document.getElementById("password").value;
+
+            // Send the password to the Flask server for validation
+            fetch('https://sadwave1.pythonanywhere.com/delete_all_requests', {
+                method: 'POST',
+                body: new URLSearchParams({ password: password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === 'All requests deleted successfully') {
+                    alert('All requests have been deleted.');
+                    fetchRequests(); // Refresh the table after deletion
+                    closePopup();
+                } else {
+                    alert('Incorrect password.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        // Fetch and display requests when the page loads
+        window.onload = fetchRequests;
+    </script>
+</body>
+</html>
